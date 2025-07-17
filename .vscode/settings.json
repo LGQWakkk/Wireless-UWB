@@ -1,0 +1,28 @@
+{
+    "files.associations": {
+        "main.h": "c",
+        "system.h": "c",
+        "stdio.h": "c",
+        "usart.h": "c",
+        "limits": "c",
+        "type_traits": "c",
+        "mk8000.h": "c",
+        "stdint.h": "c",
+        "stdbool.h": "c",
+        "string.h": "c",
+        "si24r1.h": "c",
+        "spi.h": "c",
+        "gpio.h": "c",
+        "utils.h": "c",
+        "stm32g0xx_ll_utils.h": "c",
+        "stm32g0xx_it.h": "c",
+        "cmath": "c",
+        "stm32g0xx.h": "c",
+        "stm32g0xx_ll_dmamux.h": "c",
+        "stdlib.h": "c",
+        "stddef.h": "c",
+        "stdarg.h": "c",
+        "dma.h": "c",
+        "adc.h": "c"
+    }
+}
