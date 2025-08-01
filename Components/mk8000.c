@@ -7,35 +7,86 @@ char cmd_buffer[CMD_BUFFER_SIZE];  // 发送指令缓冲区
 // MK8000串口发送数据
 void mk8000_uart_send(char *buffer, uint16_t len)
 {
-    // HAL_UART_Transmit(&MK8000_UART_HANDLE, (uint8_t *)buffer, len, 0xFFFF);
     mk8000_uart_tx((uint8_t *)buffer, len);
 }
 
-// 初始化
-void mk8000_init(void)
+// 主机模式初始化
+// 注意指令之间延时一定要足够 否则会配置失败
+void mk8000_master_init(void)
 {
     mk8000_set_mode(MODE_CONFIG); // 进入配置模式
-    HAL_Delay(20);
+    HAL_Delay(100);
     mk8000_set_role(ROLE_MASTER); // 设置为主机模式
-    HAL_Delay(20);
-    mk8000_set_tx_power(POWER_LEVEL_4); // 设置为最大发射功率
-    HAL_Delay(20);
-    mk8000_set_pid(0); // 设置网络PID为0
-    HAL_Delay(20);
-    mk8000_set_period(50); // 设置测距周期为50ms
-    HAL_Delay(20);
-    mk8000_set_host_addr(0x0000); // 设置主机地址为0x0000
-    HAL_Delay(20);
-    mk8000_set_slave_addr(0, 0x0001);
-    HAL_Delay(20);
-    mk8000_set_slave_addr(1, 0x0002);
-    HAL_Delay(20);
-    mk8000_set_slave_addr(2, 0x0003);
-    HAL_Delay(20);
+    HAL_Delay(100);
     mk8000_software_reset(); // 设置软件复位以使得配置生效
     HAL_Delay(100);
-    mk8000_set_mode(MODE_MEASURE); // 退出配置模式
-    HAL_Delay(20);
+
+    mk8000_set_mode(MODE_CONFIG); // 进入配置模式
+    HAL_Delay(100);
+    mk8000_set_tx_power(POWER_LEVEL_4); // 设置为最大发射功率
+    HAL_Delay(100);
+    mk8000_set_pid(0); // 设置网络PID为0
+    HAL_Delay(100);
+    mk8000_set_period(50); // 设置测距周期为50ms
+    HAL_Delay(100);
+    mk8000_set_host_addr(0x0000); // 设置本机(主机)地址为0x0000
+    HAL_Delay(100);
+    mk8000_set_slave_addr(0, 0x0001); // 设置从机1地址
+    HAL_Delay(100);
+    mk8000_set_slave_addr(1, 0x0002); // 设置从机2地址
+    HAL_Delay(100);
+    mk8000_set_slave_addr(2, 0x0003); // 设置从机3地址
+    HAL_Delay(100);
+
+    // 查询所有参数以确认
+    mk8000_read_all_param();
+    HAL_Delay(100);
+
+    mk8000_software_reset(); // 设置软件复位以使得配置生效 之后会自动进入测量模式
+    HAL_Delay(100);
+}
+
+// 从机模式初始化 传入参数为本从机地址
+// 注意设置主从模式之后需要立即复位 复位之前设置其它参数无效
+// ALL PARAM:
+// AT+ROLE=0 (SLAVE)
+// AT+PWR=4
+// AT+PID=0
+// AT+PERIOD=5
+// AT+UART=115200
+// AT+LPWR=0
+// AT+MADDR=0001 本机地址
+// AT+SADDR0=0000 主机地址
+// AT+SADDR1=0002
+// AT+SADDR2=0003
+void mk8000_slave_init(uint16_t slave_addr)
+{
+    mk8000_set_mode(MODE_CONFIG); // 进入配置模式
+    HAL_Delay(100);
+    mk8000_set_role(ROLE_SLAVE); // 设置为从机模式
+    HAL_Delay(100);
+    mk8000_software_reset(); // 设置软件复位以使得配置生效
+    HAL_Delay(100);
+
+    mk8000_set_mode(MODE_CONFIG); // 进入配置模式
+    HAL_Delay(100);
+    mk8000_set_tx_power(POWER_LEVEL_4); // 设置为最大发射功率
+    HAL_Delay(100);
+    mk8000_set_pid(0); // 设置网络PID为0
+    HAL_Delay(100);
+    mk8000_set_period(50); // 设置测距周期为50ms
+    HAL_Delay(100);
+    mk8000_set_host_addr(slave_addr); // 设置本机(从机)地址
+    HAL_Delay(100);
+    mk8000_set_slave_addr(0, 0x0000); // 设置主机地址
+    HAL_Delay(100);
+
+    // 查询所有参数以确认
+    mk8000_read_all_param();
+    HAL_Delay(100);
+
+    mk8000_software_reset(); // 设置软件复位以使得配置生效 之后会自动进入测量模式
+    HAL_Delay(100);
 }
 
 // 解析帧数据 返回值表示是否成功解析
@@ -45,7 +96,7 @@ void mk8000_init(void)
 bool mk8000_parse_frame(uint8_t *buffer, mk8000_frame_t *frame)
 {
     // check frame
-    if(buffer[0]!= FRAME_HEAD || buffer[1]!= FRAME_LEN || buffer[7]!= FRAME_TAIL){
+    if(buffer[0]!= FRAME_HEAD || buffer[1]!= 0X05 || buffer[7]!= FRAME_TAIL){
         frame->valid = false; //数据包无效
         return false; //error
     }
@@ -180,6 +231,14 @@ uint8_t mk8000_set_host_addr(uint16_t addr)
     return 0; //success
 }
 
+// 查询主机地址
+uint8_t mk8000_read_host_addr(void)
+{
+    snprintf(cmd_buffer, sizeof(cmd_buffer), "AT+MADDR=?\r\n");
+    mk8000_uart_send(cmd_buffer, strlen(cmd_buffer));
+    return 0; //success
+}
+
 // 设置从机地址(模块为从机模式时 从机0地址为需要挂载的主机模块地址)
 // 设置为哪个从机: 范围0-2
 // "AT+SADDR0=<addr>\r\n"
@@ -192,6 +251,17 @@ uint8_t mk8000_set_slave_addr(uint8_t slave, uint16_t addr)
         return 1; //error
     }
     snprintf(cmd_buffer, sizeof(cmd_buffer), "AT+SADDR%d=%04X\r\n", slave, addr);
+    mk8000_uart_send(cmd_buffer, strlen(cmd_buffer));
+    return 0; //success
+}
+
+// 查询从机地址
+uint8_t mk8000_read_slave_addr(uint8_t slave)
+{
+    if(slave > 2){
+        return 1; //error
+    }
+    snprintf(cmd_buffer, sizeof(cmd_buffer), "AT+SADDR%d=?\r\n", slave);
     mk8000_uart_send(cmd_buffer, strlen(cmd_buffer));
     return 0; //success
 }
@@ -225,4 +295,55 @@ uint8_t mk8000_software_reset(void)
     snprintf(cmd_buffer, sizeof(cmd_buffer), "AT+RST\r\n");
     mk8000_uart_send(cmd_buffer, strlen(cmd_buffer));
     return 0; //success
+}
+
+// 查询所有参数
+uint8_t mk8000_read_all_param(void)
+{
+    snprintf(cmd_buffer, sizeof(cmd_buffer), "AT+ALL\r\n");
+    mk8000_uart_send(cmd_buffer, strlen(cmd_buffer));
+    return 0; //success
+}
+
+#define MK8000_UART_RX_BUFFER_SIZE (2*FRAME_TOTAL_LEN)
+static uint8_t buf[MK8000_UART_RX_BUFFER_SIZE];
+static uint8_t buf_p;
+
+// MK8000 串口单字节解析函数
+// return:
+// 0: success
+// 1: wait for next byte
+// 2: len error
+// 3: overflow error
+// 4: parse error
+uint8_t mk8000_parse_char(uint8_t data, mk8000_frame_t *_frame)
+{
+    if(data == FRAME_HEAD){
+        buf_p = 0;
+        buf[buf_p] = data;
+        buf_p++;
+        return 1; // wait for next byte
+    }else if(data == FRAME_TAIL){
+        if(buf_p == (FRAME_TOTAL_LEN-1)){ //success
+            buf[buf_p] = data;
+            buf_p = 0;//reset
+            if(mk8000_parse_frame(buf, _frame)){
+                return 0; // success
+            }else{
+                return 4; // parse error
+            }
+        }else{ // len error
+            buf_p = 0;//reset
+            return 2; // len error
+        }
+    }else{
+        if(buf_p < (FRAME_TOTAL_LEN-1)){
+            buf[buf_p] = data;
+            buf_p++;
+            return 1; // wait for next byte
+        }else if(buf_p > (FRAME_TOTAL_LEN-1)){ // overflow
+            buf_p = 0;//reset
+            return 3; // overflow error
+        }
+    }
 }

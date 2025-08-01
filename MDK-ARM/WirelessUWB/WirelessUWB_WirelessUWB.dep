@@ -380,7 +380,7 @@ I (..\Drivers\STM32G0xx_HAL_Driver\Inc\stm32g0xx_ll_pwr.h)(0x679D89C8)
 I (..\Drivers\STM32G0xx_HAL_Driver\Inc\stm32g0xx_ll_gpio.h)(0x679D89C8)
 I (..\Drivers\STM32G0xx_HAL_Driver\Inc\stm32g0xx_ll_exti.h)(0x679D89C8)
 I (..\Core\Inc\stm32g0xx_it.h)(0x6878CAAC)
-I (..\Components\utils.h)(0x6878CC78)
+I (..\Components\utils.h)(0x688C4151)
 I (C:\Keil_v5\ARM\ARMCLANG\include\stdbool.h)(0x6035A4A8)
 I (C:\Keil_v5\ARM\ARMCLANG\include\string.h)(0x6035A4A8)
 I (..\Components\system.h)(0x6878CBA7)
@@ -1297,7 +1297,7 @@ I (..\Drivers\STM32G0xx_HAL_Driver\Inc\stm32g0xx_hal_pwr.h)(0x679D89C8)
 I (..\Drivers\STM32G0xx_HAL_Driver\Inc\stm32g0xx_hal_pwr_ex.h)(0x679D89C8)
 I (..\Drivers\STM32G0xx_HAL_Driver\Inc\stm32g0xx_hal_spi.h)(0x679D89C8)
 I (..\Drivers\STM32G0xx_HAL_Driver\Inc\stm32g0xx_hal_spi_ex.h)(0x679D89C8)
-F (..\Components\system.c)(0x6878CE8C)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m0plus -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-3 -O1 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -I ../Core/Inc -I ../Drivers/STM32G0xx_HAL_Driver/Inc -I ../Drivers/STM32G0xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32G0xx/Include -I ../Drivers/CMSIS/Include -I ../Components-I./RTE/_WirelessUWB-IC:/Users/31615/AppData/Local/Arm/Packs/ARM/CMSIS/5.7.0/CMSIS/Core/Include-IC:/Users/31615/AppData/Local/Arm/Packs/Keil/STM32G0xx_DFP/1.5.0/Drivers/CMSIS/Device/ST/STM32G0xx/Include-D__UVISION_VERSION="534" -D_RTE_ -DSTM32G030xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32G030xx -DUSE_FULL_LL_DRIVER-o wirelessuwb/system.o -MD)
+F (..\Components\system.c)(0x688C49C1)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m0plus -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-3 -O1 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -I ../Core/Inc -I ../Drivers/STM32G0xx_HAL_Driver/Inc -I ../Drivers/STM32G0xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32G0xx/Include -I ../Drivers/CMSIS/Include -I ../Components-I./RTE/_WirelessUWB-IC:/Users/31615/AppData/Local/Arm/Packs/ARM/CMSIS/5.7.0/CMSIS/Core/Include-IC:/Users/31615/AppData/Local/Arm/Packs/Keil/STM32G0xx_DFP/1.5.0/Drivers/CMSIS/Device/ST/STM32G0xx/Include-D__UVISION_VERSION="534" -D_RTE_ -DSTM32G030xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32G030xx -DUSE_FULL_LL_DRIVER-o wirelessuwb/system.o -MD)
 I (..\Components\system.h)(0x6878CBA7)
 I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x6035A4A8)
 I (C:\Keil_v5\ARM\ARMCLANG\include\stdbool.h)(0x6035A4A8)
@@ -1349,12 +1349,14 @@ I (..\Drivers\STM32G0xx_HAL_Driver\Inc\stm32g0xx_ll_pwr.h)(0x679D89C8)
 I (..\Drivers\STM32G0xx_HAL_Driver\Inc\stm32g0xx_ll_gpio.h)(0x679D89C8)
 I (..\Drivers\STM32G0xx_HAL_Driver\Inc\stm32g0xx_ll_exti.h)(0x679D89C8)
 I (..\Core\Inc\gpio.h)(0x67D24121)
-I (..\Components\utils.h)(0x6878CC78)
+I (..\Components\utils.h)(0x688C4151)
 I (..\Core\Inc\dma.h)(0x6873B4B9)
 I (..\Components\si24r1.h)(0x6867A994)
 I (..\Core\Inc\spi.h)(0x67D24122)
-F (..\Components\mk8000.c)(0x6873D9A9)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m0plus -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-3 -O1 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -I ../Core/Inc -I ../Drivers/STM32G0xx_HAL_Driver/Inc -I ../Drivers/STM32G0xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32G0xx/Include -I ../Drivers/CMSIS/Include -I ../Components-I./RTE/_WirelessUWB-IC:/Users/31615/AppData/Local/Arm/Packs/ARM/CMSIS/5.7.0/CMSIS/Core/Include-IC:/Users/31615/AppData/Local/Arm/Packs/Keil/STM32G0xx_DFP/1.5.0/Drivers/CMSIS/Device/ST/STM32G0xx/Include-D__UVISION_VERSION="534" -D_RTE_ -DSTM32G030xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32G030xx -DUSE_FULL_LL_DRIVER-o wirelessuwb/mk8000.o -MD)
-I (..\Components\mk8000.h)(0x6873D98F)
+I (..\Components\mk8000.h)(0x688C411F)
+I (..\Core\Inc\usart.h)(0x6873B4B9)
+F (..\Components\mk8000.c)(0x688C4115)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m0plus -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-3 -O1 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -I ../Core/Inc -I ../Drivers/STM32G0xx_HAL_Driver/Inc -I ../Drivers/STM32G0xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32G0xx/Include -I ../Drivers/CMSIS/Include -I ../Components-I./RTE/_WirelessUWB-IC:/Users/31615/AppData/Local/Arm/Packs/ARM/CMSIS/5.7.0/CMSIS/Core/Include-IC:/Users/31615/AppData/Local/Arm/Packs/Keil/STM32G0xx_DFP/1.5.0/Drivers/CMSIS/Device/ST/STM32G0xx/Include-D__UVISION_VERSION="534" -D_RTE_ -DSTM32G030xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32G030xx -DUSE_FULL_LL_DRIVER-o wirelessuwb/mk8000.o -MD)
+I (..\Components\mk8000.h)(0x688C411F)
 I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x6035A4A8)
 I (C:\Keil_v5\ARM\ARMCLANG\include\stdbool.h)(0x6035A4A8)
 I (C:\Keil_v5\ARM\ARMCLANG\include\string.h)(0x6035A4A8)
@@ -1404,7 +1406,7 @@ I (..\Drivers\STM32G0xx_HAL_Driver\Inc\stm32g0xx_ll_pwr.h)(0x679D89C8)
 I (..\Drivers\STM32G0xx_HAL_Driver\Inc\stm32g0xx_ll_gpio.h)(0x679D89C8)
 I (..\Drivers\STM32G0xx_HAL_Driver\Inc\stm32g0xx_ll_exti.h)(0x679D89C8)
 I (..\Core\Inc\usart.h)(0x6873B4B9)
-I (..\Components\utils.h)(0x6878CC78)
+I (..\Components\utils.h)(0x688C4151)
 I (..\Components\system.h)(0x6878CBA7)
 I (C:\Keil_v5\ARM\ARMCLANG\include\stdarg.h)(0x6035A4A8)
 I (..\Core\Inc\gpio.h)(0x67D24121)
@@ -1463,8 +1465,8 @@ I (..\Drivers\STM32G0xx_HAL_Driver\Inc\stm32g0xx_ll_gpio.h)(0x679D89C8)
 I (..\Drivers\STM32G0xx_HAL_Driver\Inc\stm32g0xx_ll_exti.h)(0x679D89C8)
 I (..\Core\Inc\gpio.h)(0x67D24121)
 I (..\Core\Inc\spi.h)(0x67D24122)
-F (..\Components\utils.c)(0x6878CCC5)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m0plus -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-3 -O1 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -I ../Core/Inc -I ../Drivers/STM32G0xx_HAL_Driver/Inc -I ../Drivers/STM32G0xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32G0xx/Include -I ../Drivers/CMSIS/Include -I ../Components-I./RTE/_WirelessUWB-IC:/Users/31615/AppData/Local/Arm/Packs/ARM/CMSIS/5.7.0/CMSIS/Core/Include-IC:/Users/31615/AppData/Local/Arm/Packs/Keil/STM32G0xx_DFP/1.5.0/Drivers/CMSIS/Device/ST/STM32G0xx/Include-D__UVISION_VERSION="534" -D_RTE_ -DSTM32G030xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32G030xx -DUSE_FULL_LL_DRIVER-o wirelessuwb/utils.o -MD)
-I (..\Components\utils.h)(0x6878CC78)
+F (..\Components\utils.c)(0x688C3D25)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m0plus -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-3 -O1 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -I ../Core/Inc -I ../Drivers/STM32G0xx_HAL_Driver/Inc -I ../Drivers/STM32G0xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32G0xx/Include -I ../Drivers/CMSIS/Include -I ../Components-I./RTE/_WirelessUWB-IC:/Users/31615/AppData/Local/Arm/Packs/ARM/CMSIS/5.7.0/CMSIS/Core/Include-IC:/Users/31615/AppData/Local/Arm/Packs/Keil/STM32G0xx_DFP/1.5.0/Drivers/CMSIS/Device/ST/STM32G0xx/Include-D__UVISION_VERSION="534" -D_RTE_ -DSTM32G030xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32G030xx -DUSE_FULL_LL_DRIVER-o wirelessuwb/utils.o -MD)
+I (..\Components\utils.h)(0x688C4151)
 I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x6035A4A8)
 I (C:\Keil_v5\ARM\ARMCLANG\include\stdbool.h)(0x6035A4A8)
 I (C:\Keil_v5\ARM\ARMCLANG\include\string.h)(0x6035A4A8)
@@ -1517,3 +1519,5 @@ I (..\Drivers\STM32G0xx_HAL_Driver\Inc\stm32g0xx_ll_gpio.h)(0x679D89C8)
 I (..\Drivers\STM32G0xx_HAL_Driver\Inc\stm32g0xx_ll_exti.h)(0x679D89C8)
 I (..\Core\Inc\gpio.h)(0x67D24121)
 I (..\Core\Inc\dma.h)(0x6873B4B9)
+I (..\Components\mk8000.h)(0x688C411F)
+I (..\Core\Inc\usart.h)(0x6873B4B9)

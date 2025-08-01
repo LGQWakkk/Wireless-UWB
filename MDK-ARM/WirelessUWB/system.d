@@ -50,4 +50,5 @@ wirelessuwb/system.o: ..\Components\system.c ..\Components\system.h \
   ..\Drivers\STM32G0xx_HAL_Driver\Inc\stm32g0xx_ll_gpio.h \
   ..\Drivers\STM32G0xx_HAL_Driver\Inc\stm32g0xx_ll_exti.h \
   ..\Core\Inc\gpio.h ..\Core\Inc\main.h ..\Components\utils.h \
-  ..\Core\Inc\dma.h ..\Components\si24r1.h ..\Core\Inc\spi.h
+  ..\Core\Inc\dma.h ..\Components\si24r1.h ..\Core\Inc\spi.h \
+  ..\Components\mk8000.h ..\Core\Inc\usart.h

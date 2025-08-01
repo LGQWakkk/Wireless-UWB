@@ -17,7 +17,6 @@
 // 测距模式数据包格式
 // [帧头0xF0] [有效数据长度0x05] [发送地址2Byte] [距离2Byte] [信号强度 1Byte] [帧尾0xAA]
 #define FRAME_HEAD 0XF0
-#define FRAME_LEN 0X05
 #define FRAME_TAIL 0XAA
 #define FRAME_TOTAL_LEN 0x08 //数据包总长度(缓冲区大小)
 
@@ -31,7 +30,7 @@ typedef struct{
     uint16_t send_addr;     //数据包发送地址
     uint16_t raw_distance;  //距离 单位cm 原始数据
     uint8_t raw_rssi;       //数据包信号强度 原始数据
-    float distance;         //距离 单位m
+    float distance;         //距离 单位m 有效数字两位小数
     int rssi;               //数据包信号强度 单位dBm(-256~-1)
 }mk8000_frame_t;
 
@@ -85,7 +84,8 @@ typedef struct{
 
 // Functions
 void mk8000_uart_send(char *buffer, uint16_t len);
-void mk8000_init(void);
+void mk8000_master_init(void);
+void mk8000_slave_init(uint16_t slave_addr);
 bool mk8000_parse_frame(uint8_t *buffer, mk8000_frame_t *frame);
 uint8_t mk8000_set_mode(mk8000_mode_t mode);
 uint8_t mk8000_set_role(mk8000_role_t role);
@@ -95,6 +95,10 @@ uint8_t mk8000_set_pid(uint8_t pid);
 uint8_t mk8000_set_low_power(mk8000_low_power_t mode);
 uint8_t mk8000_set_period(uint16_t period);
 uint8_t mk8000_set_host_addr(uint16_t addr);
+uint8_t mk8000_read_host_addr(void);
 uint8_t mk8000_set_slave_addr(uint8_t slave, uint16_t addr);
+uint8_t mk8000_read_slave_addr(uint8_t slave);
 uint8_t mk8000_reset_param(void);       //恢复出厂设置
 uint8_t mk8000_software_reset(void);    //软件复位
+uint8_t mk8000_read_all_param(void);
+uint8_t mk8000_parse_char(uint8_t data, mk8000_frame_t *frame);

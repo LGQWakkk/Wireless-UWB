@@ -1,4 +1,8 @@
 #include "utils.h"
+#include "mk8000.h"
+
+extern mk8000_frame_t frame;
+extern bool frame_ready;
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////
 // ADC BATTERY
@@ -149,15 +153,16 @@ void debug_uart_rx_callback(void)
 // UART2 MK8000 串口接收回调函数
 void mk8000_uart_callback(void)
 {
-    uint8_t data = LL_USART_ReceiveData8(USART2);
-
+    uint8_t data = LL_USART_ReceiveData8(USART2); // 读取数据并清除中断
+    if(mk8000_parse_char(data, &frame) == 0){
+        frame_ready = true;
+    }
 }
 // 启动UART2 MK8000 串口接收
 void mk8000_uart_start(void)
 {
     LL_USART_ClearFlag_ORE(USART2);
     LL_USART_EnableIT_RXNE(USART2);
-    // LL_USART_EnableIT_ERROR(USART2);
 }
 // MK8000 串口轮询发送
 void mk8000_uart_tx(uint8_t *buffer, uint32_t len)
@@ -165,9 +170,9 @@ void mk8000_uart_tx(uint8_t *buffer, uint32_t len)
     uint32_t index = 0;
     uint8_t *p = buffer;
     for (index = 0; index < len; index++){
-        while (!LL_USART_IsActiveFlag_TXE(USART2));
-        LL_USART_TransmitData8(USART2, *p++);
-        }
+    while (!LL_USART_IsActiveFlag_TXE(USART2));
+    LL_USART_TransmitData8(USART2, *p++);
+    }
     while(!LL_USART_IsActiveFlag_TC(USART2));
 }
 /////////////////////////////////////////////////////////////////////////////////////////////////////
