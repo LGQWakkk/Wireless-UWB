@@ -1,6 +1,8 @@
 ## Wireless UWB 开发板
 
+![](Doc/images/pic1.jpg)
 
+![](Doc/images/3D.png)
 
 ### 说明
 
@@ -22,5 +24,5 @@ STM32G0的UART1接口通过排针引出，并且连接到CH340C，用于调试
 
 通过选择焊接以下电阻进行内部连接控制：
 
-![](Doc/images/pic1.png)
+![](Doc/images/pic2.png)
 
